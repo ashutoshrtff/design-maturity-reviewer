@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DesignMaturityReviewerConfig",
+  "type": "object",
+  "required": ["design_pages", "knowledge", "status_dir"],
+  "properties": {
+    "design_pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["page_id"],
+        "properties": {
+          "page_id": { "type": "string" },
+          "title": { "type": "string" },
+          "min_relevance": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+        }
+      }
+    },
+    "design_context": {
+      "type": "object",
+      "properties": {
+        "top_k": { "type": "integer", "default": 8, "minimum": 1 },
+        "max_chars_per_chunk": { "type": "integer", "default": 1200, "minimum": 100 },
+        "min_relevance": { "type": "number", "default": 0.35, "minimum": 0.0, "maximum": 1.0 }
+      }
+    },
+    "knowledge": {
+      "type": "object",
+      "required": ["index_dir"],
+      "properties": {
+        "index_dir": { "type": "string", "default": "knowledge-index" },
+        "ingestion_command": { "type": "string" }
+      }
+    },
+    "atlassian": {
+      "type": "object",
+      "properties": {
+        "base_url_env": { "type": "string", "default": "ATLASSIAN_BASE_URL" },
+        "deployment_type": { "type": "string", "enum": ["auto", "cloud", "datacenter"], "default": "auto" },
+        "email_env": { "type": "string", "default": "ATLASSIAN_EMAIL" },
+        "api_token_env": { "type": "string", "default": "ATLASSIAN_API_TOKEN" },
+        "pat_env": { "type": "string", "default": "ATLASSIAN_PAT" }
+      }
+    },
+    "github": {
+      "type": "object",
+      "properties": {
+        "hostname": { "type": "string", "default": "" }
+      }
+    },
+    "code": {
+      "type": "object",
+      "properties": {
+        "main_branch": { "type": "string", "default": "main" },
+        "default_ref": { "type": "string", "default": "origin/main" },
+        "search_paths": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["src", "app"]
+        }
+      }
+    },
+    "status_dir": {
+      "type": "string",
+      "default": "design-status"
+    }
+  }
+}

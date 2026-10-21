@@ -1,0 +1,120 @@
+{
+  "jira_key": "PAY-123",
+  "design_id": "123456",
+  "design_version": 12,
+  "timestamp": "2026-10-21T08:17:59.234938+00:00",
+  "git_context": {
+    "mode": "verified",
+    "requested_ref": "HEAD",
+    "resolved_commit": "fb810036f87770d0e1946b789f34fcff105c41aa",
+    "current_branch": "main"
+  },
+  "pr_evidence": {
+    "level": 3,
+    "attribution_method": "branch_changes",
+    "pr_number": null,
+    "title": "Local working branch (unmerged)",
+    "state": "PROVISIONAL",
+    "branch": "HEAD",
+    "changed_files": [],
+    "diff_stat": "Local branch changes",
+    "attribution_limitations": "No PR found; using branch changes relative to origin/main"
+  },
+  "assessments": [
+    {
+      "requirement_id": "R-001",
+      "status": "Pending",
+      "flags": [],
+      "rationale": "Targeted search for terms [] found no qualifying implementation evidence in code at ref HEAD.",
+      "evidence": [],
+      "missing_criteria": [
+        "Architecture and operational requirements for real-time payment settlement."
+      ],
+      "human_verification_needed": null
+    },
+    {
+      "requirement_id": "R-002",
+      "status": "Implemented",
+      "flags": [],
+      "rationale": "All 1 acceptance criteria are satisfied by code evidence at HEAD.",
+      "evidence": [
+        {
+          "file_path": "src/settlement.py",
+          "line_number": 5,
+          "start_line": 2,
+          "end_line": 8,
+          "snippet": "\napp = FastAPI()\n\n@app.post(\"/v1/settlements\")\ndef create_settlement(request: Request):\n    # Validate required Idempotency-Key header\n    idempotency_key = request.headers.get(\"Idempotency-Key\")",
+          "snippet_hash": "e5ed53bd35aea7512d4c6842afe439d0a4def6300cac16367942e39fd22ccc71",
+          "matched_term": "/v1/settlements",
+          "ref": "fb810036",
+          "commit_sha": "fb810036",
+          "pr_number": 123,
+          "attribution_source": "git_blame",
+          "confidence": "high"
+        },
+        {
+          "file_path": "src/settlement.py",
+          "line_number": 7,
+          "start_line": 4,
+          "end_line": 10,
+          "snippet": "\n@app.post(\"/v1/settlements\")\ndef create_settlement(request: Request):\n    # Validate required Idempotency-Key header\n    idempotency_key = request.headers.get(\"Idempotency-Key\")\n    if not idempotency_key:\n        raise HTTPException(status_code=400, detail=\"Missing required Idempotency-Key\")",
+          "snippet_hash": "254bbfc3cda956ac1ab23c17501de474e3348f0335ba0cbdfbacc88166e6fd5c",
+          "matched_term": "Idempotency-Key",
+          "ref": "fb810036",
+          "commit_sha": "fb810036",
+          "pr_number": 123,
+          "attribution_source": "git_blame",
+          "confidence": "high"
+        },
+        {
+          "file_path": "src/settlement.py",
+          "line_number": 10,
+          "start_line": 7,
+          "end_line": 13,
+          "snippet": "    # Validate required Idempotency-Key header\n    idempotency_key = request.headers.get(\"Idempotency-Key\")\n    if not idempotency_key:\n        raise HTTPException(status_code=400, detail=\"Missing required Idempotency-Key\")\n\n    # Check cache for duplicate request\n    cached_response = check_idempotency_cache(idempotency_key)",
+          "snippet_hash": "4c03975adb9aeb23a5bf50023b7849ca55cf02e2086950bf00d8af1f735554e9",
+          "matched_term": "Idempotency-Key",
+          "ref": "fb810036",
+          "commit_sha": "fb810036",
+          "pr_number": 123,
+          "attribution_source": "git_blame",
+          "confidence": "high"
+        }
+      ],
+      "satisfied_criteria": [
+        "All incoming payment settlement requests to `/v1/settlements` must provide a unique `Idempotency-Key` HTTP header."
+      ],
+      "missing_criteria": [],
+      "human_verification_needed": null
+    },
+    {
+      "requirement_id": "R-003",
+      "status": "Pending",
+      "flags": [],
+      "rationale": "Targeted search for terms ['X-Cache: HIT', 'IDEMPOTENCY_CONCURRENT_REQUEST'] found no qualifying implementation evidence in code at ref HEAD.",
+      "evidence": [],
+      "missing_criteria": [
+        "If key was processed within 24 hours, return HTTP 200 with the cached response and `X-Cache: HIT`.",
+        "If key is currently being processed, return HTTP 409 Conflict with code `IDEMPOTENCY_CONCURRENT_REQUEST`."
+      ],
+      "human_verification_needed": null
+    },
+    {
+      "requirement_id": "R-007",
+      "status": "Pending",
+      "flags": [],
+      "rationale": "Targeted search for terms ['settlement-audit-archive'] found no qualifying implementation evidence in code at ref HEAD.",
+      "evidence": [],
+      "missing_criteria": [
+        "Settlement audit records older than 30 days must be automatically compressed and uploaded to AWS S3 bucket `settlement-audit-archive`."
+      ],
+      "human_verification_needed": null
+    }
+  ],
+  "no_design_basis": [
+    "[DONE] Cache successful response payload for 24 hours and set X-Cache: HIT",
+    "Support export of settlement ledger to Excel spreadsheet format (.xlsx)"
+  ],
+  "low_relevance_warning": false,
+  "run_id": "PAY-123-20261021-081759-5a79be"
+}

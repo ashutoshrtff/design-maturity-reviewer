@@ -1,0 +1,175 @@
+[
+  {
+    "requirement_id": "R-001",
+    "design_id": "123456",
+    "design_version": "12",
+    "revision": 1,
+    "requirement_text": "Architecture and operational requirements for real-time payment settlement.",
+    "requirement_type": "functional",
+    "acceptance_criteria": [
+      "Architecture and operational requirements for real-time payment settlement."
+    ],
+    "source_citations": [
+      {
+        "page_id": "123456",
+        "heading_path": "Instant Payment Settlement Engine / Instant Payment Settlement Engine",
+        "chunk_id": "123456-c001"
+      }
+    ],
+    "dependencies": [],
+    "flags": [],
+    "last_assessed_run_id": null
+  },
+  {
+    "requirement_id": "R-002",
+    "design_id": "123456",
+    "design_version": "12",
+    "revision": 1,
+    "requirement_text": "All incoming payment settlement requests to `/v1/settlements` must provide a unique `Idempotency-Key` HTTP header.",
+    "requirement_type": "validation",
+    "acceptance_criteria": [
+      "All incoming payment settlement requests to `/v1/settlements` must provide a unique `Idempotency-Key` HTTP header."
+    ],
+    "source_citations": [
+      {
+        "page_id": "123456",
+        "heading_path": "Instant Payment Settlement Engine / 1. Idempotency & Duplicate Request Protection",
+        "chunk_id": "123456-c002"
+      }
+    ],
+    "dependencies": [],
+    "flags": [],
+    "last_assessed_run_id": null
+  },
+  {
+    "requirement_id": "R-003",
+    "design_id": "123456",
+    "design_version": "12",
+    "revision": 1,
+    "requirement_text": "The engine must check if the key was previously processed:",
+    "requirement_type": "functional",
+    "acceptance_criteria": [
+      "If key was processed within 24 hours, return HTTP 200 with the cached response and `X-Cache: HIT`.",
+      "If key is currently being processed, return HTTP 409 Conflict with code `IDEMPOTENCY_CONCURRENT_REQUEST`."
+    ],
+    "source_citations": [
+      {
+        "page_id": "123456",
+        "heading_path": "Instant Payment Settlement Engine / 1. Idempotency & Duplicate Request Protection",
+        "chunk_id": "123456-c002"
+      }
+    ],
+    "dependencies": [],
+    "flags": [],
+    "last_assessed_run_id": null
+  },
+  {
+    "requirement_id": "R-004",
+    "design_id": "123456",
+    "design_version": "12",
+    "revision": 1,
+    "requirement_text": "The settlement processor must calculate transaction fees according to tier rules:",
+    "requirement_type": "functional",
+    "acceptance_criteria": [
+      "Tier 1 (< $1,000): 0.5% + $0.10 flat fee.",
+      "Tier 2 ($1,000 - $10,000): 0.35% + $0.25 flat fee.",
+      "Tier 3 (> $10,000): 0.20% flat fee."
+    ],
+    "source_citations": [
+      {
+        "page_id": "123456",
+        "heading_path": "Instant Payment Settlement Engine / 2. Dynamic Transaction Fee Calculation",
+        "chunk_id": "123456-c003"
+      }
+    ],
+    "dependencies": [],
+    "flags": [],
+    "last_assessed_run_id": null
+  },
+  {
+    "requirement_id": "R-005",
+    "design_id": "123456",
+    "design_version": "12",
+    "revision": 1,
+    "requirement_text": "Fee calculation must be logged with field `calculated_fee_cents`.",
+    "requirement_type": "functional",
+    "acceptance_criteria": [
+      "Fee calculation must be logged with field `calculated_fee_cents`."
+    ],
+    "source_citations": [
+      {
+        "page_id": "123456",
+        "heading_path": "Instant Payment Settlement Engine / 2. Dynamic Transaction Fee Calculation",
+        "chunk_id": "123456-c003"
+      }
+    ],
+    "dependencies": [],
+    "flags": [],
+    "last_assessed_run_id": null
+  },
+  {
+    "requirement_id": "R-006",
+    "design_id": "123456",
+    "design_version": "12",
+    "revision": 1,
+    "requirement_text": "Database failover must switch to secondary replica across AWS Availability Zones in under 500ms without data loss.",
+    "requirement_type": "error_handling",
+    "acceptance_criteria": [
+      "Database failover must switch to secondary replica across AWS Availability Zones in under 500ms without data loss."
+    ],
+    "source_citations": [
+      {
+        "page_id": "123456",
+        "heading_path": "Instant Payment Settlement Engine / 3. High Availability Multi-AZ Failover",
+        "chunk_id": "123456-c004"
+      }
+    ],
+    "dependencies": [],
+    "flags": [],
+    "last_assessed_run_id": null
+  },
+  {
+    "requirement_id": "R-007",
+    "design_id": "123456",
+    "design_version": "12",
+    "revision": 1,
+    "requirement_text": "Settlement audit records older than 30 days must be automatically compressed and uploaded to AWS S3 bucket `settlement-audit-archive`.",
+    "requirement_type": "integration_contract",
+    "acceptance_criteria": [
+      "Settlement audit records older than 30 days must be automatically compressed and uploaded to AWS S3 bucket `settlement-audit-archive`."
+    ],
+    "source_citations": [
+      {
+        "page_id": "123456",
+        "heading_path": "Instant Payment Settlement Engine / 4. End-of-Day Audit Log Archival",
+        "chunk_id": "123456-c005"
+      }
+    ],
+    "dependencies": [],
+    "flags": [],
+    "last_assessed_run_id": null
+  },
+  {
+    "requirement_id": "R-008",
+    "design_id": "123456",
+    "design_version": "12",
+    "revision": 1,
+    "requirement_text": "System performance must feel suitably snappy and scalable under peak holiday loads.",
+    "requirement_type": "non_functional",
+    "acceptance_criteria": [
+      "System performance must feel suitably snappy and scalable under peak holiday loads."
+    ],
+    "source_citations": [
+      {
+        "page_id": "123456",
+        "heading_path": "Instant Payment Settlement Engine / 5. Performance and Latency",
+        "chunk_id": "123456-c006"
+      }
+    ],
+    "dependencies": [],
+    "flags": [
+      "ambiguous"
+    ],
+    "last_assessed_run_id": null
+  }
+]

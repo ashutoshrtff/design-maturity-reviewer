@@ -1,0 +1,2 @@
+{"run_id": "PAY-123-20261021-081759-5a79be", "timestamp": "2026-10-21T08:17:59.234938+00:00", "jira_key": "PAY-123", "mode": "verified", "ref": "HEAD", "commit": "fb810036f87770d0e1946b789f34fcff105c41aa", "assessed_count": 4}
+{"run_id": "PAY-123-20261021-081907-87deb2", "timestamp": "2026-10-21T08:19:07.556062+00:00", "jira_key": "PAY-123", "mode": "verified", "ref": "HEAD", "commit": "fb810036f87770d0e1946b789f34fcff105c41aa", "assessed_count": 4}

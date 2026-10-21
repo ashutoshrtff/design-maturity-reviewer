@@ -1,0 +1,13 @@
+{
+  "page_id": "123456",
+  "page_title": "Instant Payment Settlement Engine",
+  "page_version": 12,
+  "schema_version": "1.0",
+  "child_page_ids": [],
+  "source_content_hash": "9082c00ac6a1ee8c2f8c8b612f0ca314f0ff15dab7ec9291e0c3fcbb47e67172",
+  "chunk_count": 6,
+  "dimension": 384,
+  "embedding_model": "deterministic-semantic-v1",
+  "faiss_native": false,
+  "ingested_at": "2026-10-21T08:02:03.910952+00:00"
+}

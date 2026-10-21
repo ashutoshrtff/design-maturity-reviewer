@@ -1,0 +1,16 @@
+# Core dependencies for Design Maturity Reviewer (DMR)
+# Python 3.9+ compatible
+
+PyYAML>=6.0
+numpy>=1.24.0
+requests>=2.28.0
+pydantic>=2.0.0
+
+# Optional / Production Vector Store & Embeddings
+# When faiss-cpu is installed, DMR uses Faiss natively for dense index retrieval.
+# When faiss-cpu is omitted or unsupported in specific environments, DMR safely
+# falls back to the built-in NumPy dense cosine similarity engine.
+faiss-cpu>=1.7.4; platform_system != "Windows" or python_version < "3.12"
+
+# Dev & Testing
+pytest>=7.0.0

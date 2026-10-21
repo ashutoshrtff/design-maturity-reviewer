@@ -1,0 +1,56 @@
+[
+  {
+    "chunk_id": "123456-c001",
+    "page_id": "123456",
+    "page_title": "Instant Payment Settlement Engine",
+    "heading_path": "Instant Payment Settlement Engine / Instant Payment Settlement Engine",
+    "text": "Architecture and operational requirements for real-time payment settlement.",
+    "source_version": 12,
+    "char_count": 75
+  },
+  {
+    "chunk_id": "123456-c002",
+    "page_id": "123456",
+    "page_title": "Instant Payment Settlement Engine",
+    "heading_path": "Instant Payment Settlement Engine / 1. Idempotency & Duplicate Request Protection",
+    "text": "All incoming payment settlement requests to `/v1/settlements` must provide a unique `Idempotency-Key` HTTP header.\nThe engine must check if the key was previously processed:\n- If key was processed within 24 hours, return HTTP 200 with the cached response and `X-Cache: HIT`.\n- If key is currently being processed, return HTTP 409 Conflict with code `IDEMPOTENCY_CONCURRENT_REQUEST`.",
+    "source_version": 12,
+    "char_count": 382
+  },
+  {
+    "chunk_id": "123456-c003",
+    "page_id": "123456",
+    "page_title": "Instant Payment Settlement Engine",
+    "heading_path": "Instant Payment Settlement Engine / 2. Dynamic Transaction Fee Calculation",
+    "text": "The settlement processor must calculate transaction fees according to tier rules:\n- Tier 1 (< $1,000): 0.5% + $0.10 flat fee.\n- Tier 2 ($1,000 - $10,000): 0.35% + $0.25 flat fee.\n- Tier 3 (> $10,000): 0.20% flat fee.\nFee calculation must be logged with field `calculated_fee_cents`.",
+    "source_version": 12,
+    "char_count": 282
+  },
+  {
+    "chunk_id": "123456-c004",
+    "page_id": "123456",
+    "page_title": "Instant Payment Settlement Engine",
+    "heading_path": "Instant Payment Settlement Engine / 3. High Availability Multi-AZ Failover",
+    "text": "Database failover must switch to secondary replica across AWS Availability Zones in under 500ms without data loss.",
+    "source_version": 12,
+    "char_count": 114
+  },
+  {
+    "chunk_id": "123456-c005",
+    "page_id": "123456",
+    "page_title": "Instant Payment Settlement Engine",
+    "heading_path": "Instant Payment Settlement Engine / 4. End-of-Day Audit Log Archival",
+    "text": "Settlement audit records older than 30 days must be automatically compressed and uploaded to AWS S3 bucket `settlement-audit-archive`.",
+    "source_version": 12,
+    "char_count": 134
+  },
+  {
+    "chunk_id": "123456-c006",
+    "page_id": "123456",
+    "page_title": "Instant Payment Settlement Engine",
+    "heading_path": "Instant Payment Settlement Engine / 5. Performance and Latency",
+    "text": "System performance must feel suitably snappy and scalable under peak holiday loads.",
+    "source_version": 12,
+    "char_count": 83
+  }
+]

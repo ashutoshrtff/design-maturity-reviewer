@@ -1,0 +1,9 @@
+{
+  "key": "PAY-123",
+  "summary": "Implement Idempotency and Deduplication for Settlement API",
+  "description": "Implement idempotency verification on /v1/settlements to prevent double charges.\n\nh3. Acceptance Criteria\n- [x] Validate presence of Idempotency-Key header on POST /v1/settlements\n- [ ] Return HTTP 409 Conflict with error code IDEMPOTENCY_CONCURRENT_REQUEST if concurrent\n- [x] Cache successful response payload for 24 hours and set X-Cache: HIT\n\nh3. Additional Requirements\n- Support export of settlement ledger to Excel spreadsheet format (.xlsx)\n",
+  "status": "In Progress",
+  "components": ["Settlement-Core", "API-Gateway"],
+  "labels": ["payments", "p0", "reliability"],
+  "linked_issues": ["PAY-100", "PAY-105"]
+}

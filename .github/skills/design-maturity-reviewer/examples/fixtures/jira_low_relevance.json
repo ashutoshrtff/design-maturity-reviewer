@@ -1,0 +1,9 @@
+{
+  "key": "MOB-999",
+  "summary": "Fix Android biometric touch ID timeout animation",
+  "description": "The fingerprint animation on Pixel 8 flashes twice when thumb is lifted too quickly.\n\nh3. Acceptance Criteria\n- [ ] Stop vibration after single pulse\n- [ ] Gracefully dismiss biometric prompt after 3 failed attempts\n",
+  "status": "Open",
+  "components": ["Mobile-Android", "Auth-UI"],
+  "labels": ["android", "ui"],
+  "linked_issues": []
+}

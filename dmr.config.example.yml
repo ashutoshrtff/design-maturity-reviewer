@@ -1,0 +1,32 @@
+design_pages:
+  - page_id: "123456"
+    title: "Instant Payment Settlement Engine"
+    min_relevance: 0.35
+
+design_context:
+  top_k: 8
+  max_chars_per_chunk: 1200
+  min_relevance: 0.35
+
+knowledge:
+  index_dir: knowledge-index
+  ingestion_command: "python tools/knowledge-ingestion/ingest.py --page-id {page_id} --output knowledge-index/{page_id}"
+
+atlassian:
+  base_url_env: ATLASSIAN_BASE_URL
+  deployment_type: auto
+  email_env: ATLASSIAN_EMAIL
+  api_token_env: ATLASSIAN_API_TOKEN
+  pat_env: ATLASSIAN_PAT
+
+github:
+  hostname: ""  # Set for GitHub Enterprise Server or data residency e.g. "github.internal.net"
+
+code:
+  main_branch: main
+  default_ref: origin/main
+  search_paths:
+    - src
+    - app
+
+status_dir: design-status
