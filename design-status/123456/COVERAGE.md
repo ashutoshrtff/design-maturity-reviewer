@@ -1,7 +1,7 @@
 # Design Maturity Coverage: Confluence Page 123456
 
-**Authoritative Baseline**: `origin/main` (c03d17a1)  
-**Rollup Generated**: 2026-10-24T02:18:01.996823+00:00  
+**Authoritative Baseline**: `origin/main` (ad537c6a)  
+**Rollup Generated**: 2026-10-25T02:19:37.132172+00:00  
 **Headline Implemented Coverage**: **12.5%**  
 
 ### Maturity Status Summary
